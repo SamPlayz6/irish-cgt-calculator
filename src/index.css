@@ -5,8 +5,9 @@
   --color-primary-light: #10b981;
   --color-primary-dark: #047857;
   --color-accent: #f59e0b;
-  --color-surface: #f8fafc;
-  --color-danger: #ef4444;
+  --color-surface: #fafaf8;
+  --color-danger: #dc2626;
+  --color-hero: #022c1e;
   --color-maupka: #6366f1;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -25,4 +26,8 @@ select {
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
+}
+
+select, button, input, a {
+  transition: all 0.15s ease;
 }

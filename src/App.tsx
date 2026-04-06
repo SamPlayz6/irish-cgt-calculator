@@ -11,13 +11,18 @@ export default function App() {
   return (
     <div className="min-h-screen bg-surface flex flex-col">
       {/* Header */}
-      <header className="bg-primary text-white">
+      <header className="bg-hero text-white">
         <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-            Irish CGT Calculator
-          </h1>
-          <p className="mt-1 text-emerald-200 text-sm sm:text-base">
-            Calculate Capital Gains Tax and deemed disposal for Irish investors
+          <div className="flex items-center gap-3 mb-1">
+            <div className="w-9 h-9 rounded-lg bg-primary/30 flex items-center justify-center text-emerald-300 font-bold text-sm">
+              CGT
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              Irish CGT Calculator
+            </h1>
+          </div>
+          <p className="mt-1 text-emerald-400/60 text-sm sm:text-base pl-12">
+            Capital Gains Tax and deemed disposal for Irish investors
           </p>
         </div>
       </header>
