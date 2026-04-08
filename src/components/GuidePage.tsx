@@ -252,16 +252,16 @@ export default function GuidePage() {
 
   if (!guide) {
     return (
-      <div className="min-h-screen bg-surface flex flex-col">
-        <header className="bg-hero text-white">
+      <div className="min-h-screen bg-cream flex flex-col">
+        <header className="bg-slate-deep text-white">
           <div className="max-w-3xl mx-auto px-4 py-6">
-            <Link to="/" className="text-emerald-400 hover:text-emerald-300 text-sm">Back to calculator</Link>
-            <h1 className="text-2xl font-bold mt-2">Page not found</h1>
+            <Link to="/" className="text-white/40 hover:text-white/70 text-sm">Back to calculator</Link>
+            <h1 className="font-[family-name:var(--font-display)] text-2xl mt-2">Page not found</h1>
           </div>
         </header>
         <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-8">
-          <p className="text-gray-600">This guide doesn't exist.</p>
-          <Link to="/" className="text-primary hover:text-primary-dark font-medium mt-4 block">Back to calculator</Link>
+          <p className="text-slate-muted">This guide doesn't exist.</p>
+          <Link to="/" className="text-teal hover:text-teal-light font-medium mt-4 block">Back to calculator</Link>
         </main>
         <Footer />
       </div>
@@ -273,37 +273,35 @@ export default function GuidePage() {
   if (metaDesc) metaDesc.setAttribute('content', guide.metaDesc);
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col">
-      <header className="bg-hero text-white">
+    <div className="min-h-screen bg-cream flex flex-col">
+      <header className="bg-slate-deep text-white">
         <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8">
-          <Link to="/" className="text-emerald-400/60 hover:text-emerald-400 text-sm transition-colors">
-            ← Back to calculator
+          <Link to="/" className="text-white/40 hover:text-white/60 text-sm">
+            Back to calculator
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight mt-3">{guide.title}</h1>
+          <h1 className="font-[family-name:var(--font-display)] text-[1.5rem] sm:text-[1.85rem] leading-snug mt-3">{guide.title}</h1>
         </div>
       </header>
 
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-8">
-        <article className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 sm:p-8 prose-sm">
-          <div className="[&>h2]:text-lg [&>h2]:font-semibold [&>h2]:text-gray-900 [&>h2]:mt-6 [&>h2]:mb-3 [&>p]:text-gray-600 [&>p]:mb-3 [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-4 [&>ul]:space-y-1 [&>ul>li]:text-gray-600 [&>ul>li]:text-sm">
+        <article className="card p-5 sm:p-8">
+          <div className="[&>h2]:font-[family-name:var(--font-display)] [&>h2]:text-lg [&>h2]:text-slate [&>h2]:mt-6 [&>h2]:mb-3 [&>p]:text-slate-muted [&>p]:mb-3 [&>p]:leading-relaxed [&>p]:text-[0.9rem] [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-4 [&>ul]:space-y-1 [&>ul>li]:text-slate-muted [&>ul>li]:text-[0.85rem]">
             {guide.content}
           </div>
         </article>
 
-        {/* CTA */}
-        <div className="mt-6 bg-primary/5 border border-primary/20 rounded-xl p-5 text-center">
-          <p className="text-gray-700 font-medium mb-3">Calculate your tax now</p>
+        <div className="mt-6 card p-5 text-center border-teal/20 bg-teal-bg/30">
+          <p className="text-slate font-medium mb-3">Calculate your tax now</p>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors"
+            className="inline-flex items-center gap-2 bg-slate-deep text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate"
           >
             Open CGT Calculator
           </Link>
         </div>
 
-        {/* Other guides */}
-        <div className="mt-6 bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-          <h3 className="font-semibold text-gray-900 mb-3">More guides</h3>
+        <div className="mt-6 card p-5">
+          <h3 className="font-[family-name:var(--font-display)] text-lg text-slate mb-3">More guides</h3>
           <div className="space-y-2">
             {Object.entries(guides)
               .filter(([key]) => key !== slug)
@@ -311,7 +309,7 @@ export default function GuidePage() {
                 <Link
                   key={key}
                   to={`/guide/${key}`}
-                  className="block text-sm text-primary hover:text-primary-dark transition-colors font-medium"
+                  className="block text-sm text-teal hover:text-teal-light font-medium"
                 >
                   {g.title}
                 </Link>
