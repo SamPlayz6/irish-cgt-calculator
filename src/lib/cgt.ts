@@ -110,6 +110,49 @@ export function calculateDeemedDisposals(asset: AssetInput): DeemedDisposalEvent
   return events;
 }
 
+// Portfolio: calculate combined CGT across multiple asset disposals
+// Shares the annual exemption across all gains
+export interface PortfolioAsset {
+  name: string;
+  type: AssetType;
+  costBasis: number;
+  saleProceeds: number;
+}
+
+export interface PortfolioResult {
+  assets: (PortfolioAsset & CGTResult)[];
+  totalGain: number;
+  totalLoss: number;
+  totalTaxOwed: number;
+  exemptionUsed: number;
+  netProceeds: number;
+}
+
+export function calculatePortfolioCGT(assets: PortfolioAsset[]): PortfolioResult {
+  // Sort by gain descending (apply exemption to highest-gain asset first)
+  const sorted = [...assets].sort((a, b) =>
+    (b.saleProceeds - b.costBasis) - (a.saleProceeds - a.costBasis)
+  );
+
+  let exemptionRemaining = ANNUAL_EXEMPTION;
+  const results: (PortfolioAsset & CGTResult)[] = [];
+
+  for (const asset of sorted) {
+    const result = calculateCGT(asset.costBasis, asset.saleProceeds, exemptionRemaining);
+    exemptionRemaining -= result.exemptionUsed;
+    results.push({ ...asset, ...result });
+  }
+
+  return {
+    assets: results,
+    totalGain: results.reduce((s, r) => s + r.gain, 0),
+    totalLoss: results.reduce((s, r) => s + r.loss, 0),
+    totalTaxOwed: results.reduce((s, r) => s + r.taxOwed, 0),
+    exemptionUsed: ANNUAL_EXEMPTION - exemptionRemaining,
+    netProceeds: results.reduce((s, r) => s + r.currentValue - r.taxOwed, 0),
+  };
+}
+
 // Calculate CGT filing deadlines
 // Irish CGT is paid in two installments:
 // - Gains Jan 1 - Nov 30: pay by Dec 15 same year
