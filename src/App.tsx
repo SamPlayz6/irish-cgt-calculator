@@ -11,43 +11,41 @@ function HomePage() {
   const [tab, setTab] = useState<Tab>('calculator');
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col">
+    <div className="min-h-screen bg-cream flex flex-col">
       {/* Header */}
-      <header className="bg-hero text-white">
-        <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="w-9 h-9 rounded-lg bg-primary/30 flex items-center justify-center text-emerald-300 font-bold text-sm">
-              CGT
-            </div>
-            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
-              Irish CGT Calculator
-            </h1>
-          </div>
-          <p className="mt-1 text-emerald-400/60 text-sm sm:text-base pl-12">
-            Capital Gains Tax and deemed disposal for Irish investors
+      <header className="bg-slate-deep text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(13,126,107,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(13,126,107,0.2) 0%, transparent 50%)',
+        }} />
+        <div className="max-w-3xl mx-auto px-4 py-7 sm:py-9 relative">
+          <h1 className="font-[family-name:var(--font-display)] text-[1.6rem] sm:text-[2rem] leading-tight">
+            Irish CGT Calculator
+          </h1>
+          <p className="mt-2 text-white/40 text-[0.9rem]">
+            Capital gains tax and deemed disposal for Irish investors
           </p>
         </div>
       </header>
 
       <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-6 space-y-6">
         {/* Tab switcher */}
-        <div className="flex rounded-lg border border-gray-300 overflow-hidden text-sm">
+        <div className="flex rounded-lg border border-cream-dark overflow-hidden text-sm">
           <button
             onClick={() => setTab('calculator')}
-            className={`flex-1 px-4 py-2.5 font-medium transition-colors ${
+            className={`flex-1 px-4 py-2.5 font-medium ${
               tab === 'calculator'
-                ? 'bg-primary text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-50'
+                ? 'bg-slate-deep text-white'
+                : 'bg-white text-slate-muted hover:bg-cream-warm'
             }`}
           >
             CGT Calculator
           </button>
           <button
             onClick={() => setTab('deemed')}
-            className={`flex-1 px-4 py-2.5 font-medium transition-colors ${
+            className={`flex-1 px-4 py-2.5 font-medium ${
               tab === 'deemed'
-                ? 'bg-primary text-white'
-                : 'bg-white text-gray-600 hover:bg-gray-50'
+                ? 'bg-slate-deep text-white'
+                : 'bg-white text-slate-muted hover:bg-cream-warm'
             }`}
           >
             Deemed Disposal
@@ -56,28 +54,28 @@ function HomePage() {
 
         {tab === 'calculator' ? <Calculator /> : <DeemedDisposal />}
 
-        {/* Info box */}
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
-          <strong>Disclaimer:</strong> This calculator is for informational purposes only.
-          It does not constitute tax advice. Always consult a qualified tax advisor or
-          check <a href="https://www.revenue.ie/en/gains-gifts-and-inheritance/transfering-an-asset/how-to-calculate-cgt.aspx" target="_blank" rel="noopener noreferrer" className="underline">Revenue.ie</a> for
-          official guidance. CGT rate: 33%. Annual exemption: €1,270.
+        {/* Disclaimer */}
+        <div className="bg-amber-bg border border-amber/20 rounded-xl p-4 text-sm text-amber">
+          <strong>Not tax advice.</strong>{' '}
+          This is for informational purposes only. Consult a tax advisor or check{' '}
+          <a href="https://www.revenue.ie/en/gains-gifts-and-inheritance/transfering-an-asset/how-to-calculate-cgt.aspx" target="_blank" rel="noopener noreferrer" className="underline">Revenue.ie</a>{' '}
+          for official guidance. CGT rate: 33%. Annual exemption: {'\u20AC'}1,270.
         </div>
 
-        {/* Guide links for SEO */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
-          <h2 className="font-semibold text-gray-900 mb-3">Tax Guides</h2>
+        {/* Guide links */}
+        <div className="card p-5">
+          <h2 className="font-[family-name:var(--font-display)] text-lg text-slate mb-3">Tax Guides</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <Link to="/guide/cgt-basics" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+            <Link to="/guide/cgt-basics" className="text-sm text-teal hover:text-teal-light font-medium">
               Capital Gains Tax in Ireland
             </Link>
-            <Link to="/guide/deemed-disposal" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+            <Link to="/guide/deemed-disposal" className="text-sm text-teal hover:text-teal-light font-medium">
               Deemed Disposal: The 8-Year Rule
             </Link>
-            <Link to="/guide/crypto-cgt" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+            <Link to="/guide/crypto-cgt" className="text-sm text-teal hover:text-teal-light font-medium">
               Cryptocurrency Tax in Ireland
             </Link>
-            <Link to="/guide/etf-tax" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+            <Link to="/guide/etf-tax" className="text-sm text-teal hover:text-teal-light font-medium">
               ETF Taxation in Ireland
             </Link>
           </div>
