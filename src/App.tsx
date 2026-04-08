@@ -87,12 +87,32 @@ function HomePage() {
   );
 }
 
+function NotFound() {
+  return (
+    <div className="min-h-screen bg-cream flex flex-col">
+      <header className="bg-slate-deep text-white">
+        <div className="max-w-3xl mx-auto px-4 py-7">
+          <h1 className="font-[family-name:var(--font-display)] text-2xl">Page not found</h1>
+        </div>
+      </header>
+      <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-12 text-center">
+        <p className="text-slate-muted mb-6">This page doesn't exist. You might have followed a broken link.</p>
+        <Link to="/" className="bg-slate-deep text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate inline-block">
+          Back to calculator
+        </Link>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/guide/:slug" element={<GuidePage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
