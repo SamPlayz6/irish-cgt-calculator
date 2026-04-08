@@ -10,11 +10,11 @@ export default class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-cream flex items-center justify-center px-4">
+        <div className="min-h-screen flex items-center justify-center px-4">
           <div className="text-center max-w-md">
-            <h1 className="font-[family-name:var(--font-display)] text-2xl text-slate mb-2">Something went wrong</h1>
-            <p className="text-slate-muted text-sm mb-4">Try refreshing. If the problem continues, clear your browser cache.</p>
-            <button onClick={() => window.location.reload()} className="bg-slate-deep text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate">Refresh</button>
+            <h1 className="font-[family-name:var(--font-display)] text-2xl text-ink mb-2">Something went wrong</h1>
+            <p className="text-ink-muted text-sm mb-4">Try refreshing. If the problem continues, clear your browser cache.</p>
+            <button onClick={() => window.location.reload()} className="bg-ink text-white px-5 py-2.5 rounded text-sm font-medium hover:bg-ink-secondary">Refresh</button>
           </div>
         </div>
       );
