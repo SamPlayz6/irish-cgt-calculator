@@ -108,6 +108,15 @@ export default function Calculator() {
               </span>
             </div>
 
+            {result.taxOwed > 0 && (
+              <div className="flex items-baseline justify-between bg-emerald-50 rounded-lg px-4 py-3 -mx-1">
+                <span className="text-sm text-emerald-700">Net proceeds after tax</span>
+                <span className="text-xl font-bold tabular-nums text-emerald-700">
+                  {formatEuro(result.currentValue - result.taxOwed)}
+                </span>
+              </div>
+            )}
+
             {/* Breakdown */}
             <div className="border-t border-gray-200 pt-4 space-y-2 text-sm">
               <div className="flex justify-between">
@@ -159,6 +168,77 @@ export default function Calculator() {
                 </div>
               </div>
             )}
+
+            {/* Export / Premium CTA */}
+            <div className="border-t border-gray-200 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={(e) => {
+                    const text = [
+                      'Irish CGT Calculation Summary',
+                      `Date: ${new Date().toLocaleDateString('en-IE')}`,
+                      '',
+                      `Cost basis: ${formatEuro(result.costBasis)}`,
+                      `Sale proceeds: ${formatEuro(result.currentValue)}`,
+                      `${result.gain > 0 ? 'Capital gain' : 'Capital loss'}: ${formatEuro(result.gain > 0 ? result.gain : result.loss)}`,
+                      result.exemptionUsed > 0 ? `Annual exemption: -${formatEuro(result.exemptionUsed)}` : '',
+                      `Taxable gain: ${formatEuro(result.taxableGain)}`,
+                      `Tax rate: 33%`,
+                      `CGT owed: ${formatEuro(result.taxOwed)}`,
+                      `Net proceeds: ${formatEuro(result.currentValue - result.taxOwed)}`,
+                      '',
+                      deadline && result.taxOwed > 0 ? `Payment deadline: ${formatDate(deadline.deadline)}` : '',
+                      '',
+                      'Generated at cgt.sdd.ie',
+                      'Disclaimer: For informational purposes only. Not tax advice.',
+                    ].filter(Boolean).join('\n');
+                    navigator.clipboard.writeText(text);
+                    const btn = e.currentTarget;
+                    const orig = btn.textContent;
+                    btn.textContent = 'Copied!';
+                    setTimeout(() => { btn.textContent = orig; }, 2000);
+                  }}
+                  className="flex-1 text-sm font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg px-4 py-2.5 transition-colors"
+                >
+                  Copy summary
+                </button>
+                <a
+                  href="https://buy.stripe.com/cgt_premium"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-lg px-4 py-2.5 transition-colors text-center"
+                  id="premium-export-btn"
+                >
+                  Download PDF report — €9/mo
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Premium upsell */}
+      {result && result.taxOwed > 0 && (
+        <section className="bg-gradient-to-br from-primary/5 to-emerald-50 rounded-xl border border-primary/20 p-5">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 className="font-semibold text-gray-900">CGT Pro — €9/month</h3>
+              <ul className="text-sm text-gray-600 mt-2 space-y-1">
+                <li>• PDF tax reports for your records</li>
+                <li>• Multi-asset portfolio tracker</li>
+                <li>• Payment deadline reminders</li>
+                <li>• Tax-loss harvesting suggestions</li>
+              </ul>
+            </div>
+            <a
+              href="https://buy.stripe.com/cgt_premium"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 bg-primary text-white font-semibold px-5 py-2.5 rounded-lg text-sm hover:bg-primary-dark transition-colors"
+              id="premium-cta-btn"
+            >
+              Start free trial
+            </a>
           </div>
         </section>
       )}

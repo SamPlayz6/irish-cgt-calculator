@@ -1,11 +1,13 @@
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Calculator from './components/Calculator';
 import DeemedDisposal from './components/DeemedDisposal';
 import Footer from './components/Footer';
+import GuidePage from './components/GuidePage';
 
 type Tab = 'calculator' | 'deemed';
 
-export default function App() {
+function HomePage() {
   const [tab, setTab] = useState<Tab>('calculator');
 
   return (
@@ -61,9 +63,39 @@ export default function App() {
           check <a href="https://www.revenue.ie/en/gains-gifts-and-inheritance/transfering-an-asset/how-to-calculate-cgt.aspx" target="_blank" rel="noopener noreferrer" className="underline">Revenue.ie</a> for
           official guidance. CGT rate: 33%. Annual exemption: €1,270.
         </div>
+
+        {/* Guide links for SEO */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5">
+          <h2 className="font-semibold text-gray-900 mb-3">Tax Guides</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <Link to="/guide/cgt-basics" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+              Capital Gains Tax in Ireland
+            </Link>
+            <Link to="/guide/deemed-disposal" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+              Deemed Disposal: The 8-Year Rule
+            </Link>
+            <Link to="/guide/crypto-cgt" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+              Cryptocurrency Tax in Ireland
+            </Link>
+            <Link to="/guide/etf-tax" className="text-sm text-primary hover:text-primary-dark font-medium transition-colors">
+              ETF Taxation in Ireland
+            </Link>
+          </div>
+        </div>
       </main>
 
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/guide/:slug" element={<GuidePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

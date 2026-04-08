@@ -180,6 +180,18 @@ export default function DeemedDisposal() {
             ))}
           </div>
 
+          <div className="px-5 sm:px-6 py-4 bg-amber-50 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-amber-900">Total estimated deemed disposal tax</span>
+              <span className="text-lg font-bold text-amber-900 tabular-nums">
+                {formatEuro(events.reduce((sum, e) => sum + e.estimatedTax, 0))}
+              </span>
+            </div>
+            <div className="text-xs text-amber-700 mt-1">
+              Over {events.length} deemed disposal event{events.length !== 1 ? 's' : ''} across {events[events.length - 1]?.yearsHeld ?? 0} years
+            </div>
+          </div>
+
           <div className="px-5 sm:px-6 py-3 bg-gray-50 border-t border-gray-200 text-xs text-gray-400">
             Future estimates assume current growth rate continues. Actual tax depends on value at each deemed disposal date.
           </div>
