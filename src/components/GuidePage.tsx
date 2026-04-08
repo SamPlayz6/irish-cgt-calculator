@@ -25,8 +25,8 @@ const guides: Record<string, GuideSection> = {
         <p>Every individual gets an annual CGT exemption of <strong>€1,270</strong>. This means the first €1,270 of gains in any tax year are tax-free. This exemption cannot be transferred between spouses.</p>
 
         <h2>How CGT is Calculated</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 my-4 text-sm">
-          <div className="font-mono space-y-1">
+        <div className="border-l-2 border-rule pl-4 my-5 text-[0.85rem] font-[family-name:var(--font-mono)]">
+          <div className="space-y-1">
             <p>Sale Price</p>
             <p>- Purchase Price (adjusted for inflation if bought before 2003)</p>
             <p>- Allowable Costs (solicitor fees, stamp duty, etc.)</p>
@@ -101,7 +101,7 @@ const guides: Record<string, GuideSection> = {
         <p>The exit tax rate on regulated funds is <strong>41%</strong>, which is higher than the standard CGT rate of 33%. This is because the €1,270 annual exemption does NOT apply to exit tax. The higher rate is meant to compensate for this.</p>
 
         <h2>How the 8-Year Cycle Works</h2>
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 my-4 text-sm">
+        <div className="border-l-2 border-rule pl-4 my-5 text-[0.85rem]">
           <p><strong>Example:</strong> You buy an ETF on 1 March 2020.</p>
           <ul className="mt-2 space-y-1">
             <li>First deemed disposal: 1 March 2028 (8 years)</li>
@@ -201,20 +201,20 @@ const guides: Record<string, GuideSection> = {
 
         <h2>Why ETFs Are Taxed Differently</h2>
         <p>Under Irish tax law, most ETFs are classified as "regulated funds" or "offshore funds." This classification puts them under a different tax regime than individual shares:</p>
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 my-4">
-          <table className="w-full text-sm">
+        <div className="border border-rule rounded my-5 overflow-hidden">
+          <table className="w-full text-[0.8rem]">
             <thead>
-              <tr className="border-b border-gray-300">
-                <th className="text-left py-2">Feature</th>
-                <th className="text-left py-2">Individual Shares</th>
-                <th className="text-left py-2">ETFs (regulated funds)</th>
+              <tr className="border-b border-rule bg-surface-alt">
+                <th className="text-left py-2 px-3 font-medium text-ink">Feature</th>
+                <th className="text-left py-2 px-3 font-medium text-ink">Individual Shares</th>
+                <th className="text-left py-2 px-3 font-medium text-ink">ETFs (regulated funds)</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
-              <tr><td className="py-2">Tax rate</td><td>33%</td><td>41%</td></tr>
-              <tr><td className="py-2">Annual exemption</td><td>€1,270</td><td>None</td></tr>
-              <tr><td className="py-2">Deemed disposal</td><td>No</td><td>Every 8 years</td></tr>
-              <tr><td className="py-2">Loss offset</td><td>Yes</td><td>Limited</td></tr>
+            <tbody className="divide-y divide-rule-light">
+              <tr><td className="py-2 px-3 text-ink-secondary">Tax rate</td><td className="py-2 px-3">33%</td><td className="py-2 px-3">41%</td></tr>
+              <tr><td className="py-2 px-3 text-ink-secondary">Annual exemption</td><td className="py-2 px-3">€1,270</td><td className="py-2 px-3">None</td></tr>
+              <tr><td className="py-2 px-3 text-ink-secondary">Deemed disposal</td><td className="py-2 px-3">No</td><td className="py-2 px-3">Every 8 years</td></tr>
+              <tr><td className="py-2 px-3 text-ink-secondary">Loss offset</td><td className="py-2 px-3">Yes</td><td className="py-2 px-3">Limited</td></tr>
             </tbody>
           </table>
         </div>
@@ -252,16 +252,16 @@ export default function GuidePage() {
 
   if (!guide) {
     return (
-      <div className="min-h-screen bg-cream flex flex-col">
-        <header className="bg-slate-deep text-white">
-          <div className="max-w-3xl mx-auto px-4 py-6">
-            <Link to="/" className="text-white/40 hover:text-white/70 text-sm">Back to calculator</Link>
-            <h1 className="font-[family-name:var(--font-display)] text-2xl mt-2">Page not found</h1>
+      <div className="min-h-screen flex flex-col">
+        <header className="border-b border-rule">
+          <div className="max-w-2xl mx-auto px-5 py-5">
+            <Link to="/" className="text-ink-muted hover:text-ink-secondary text-[0.8rem]">Back to calculator</Link>
+            <h1 className="font-[family-name:var(--font-display)] text-xl font-semibold mt-2">Page not found</h1>
           </div>
         </header>
-        <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-8">
-          <p className="text-slate-muted">This guide doesn't exist.</p>
-          <Link to="/" className="text-teal hover:text-teal-light font-medium mt-4 block">Back to calculator</Link>
+        <main className="flex-1 max-w-2xl mx-auto w-full px-5 py-8">
+          <p className="text-ink-muted">This guide doesn't exist.</p>
+          <Link to="/" className="text-ink-secondary hover:text-ink font-medium mt-4 block text-[0.85rem]">Back to calculator</Link>
         </main>
         <Footer />
       </div>
@@ -273,43 +273,43 @@ export default function GuidePage() {
   if (metaDesc) metaDesc.setAttribute('content', guide.metaDesc);
 
   return (
-    <div className="min-h-screen bg-cream flex flex-col">
-      <header className="bg-slate-deep text-white">
-        <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8">
-          <Link to="/" className="text-white/40 hover:text-white/60 text-sm">
+    <div className="min-h-screen flex flex-col">
+      <header className="border-b border-rule">
+        <div className="max-w-2xl mx-auto px-5 py-5 sm:py-6">
+          <Link to="/" className="text-ink-muted hover:text-ink-secondary text-[0.8rem]">
             Back to calculator
           </Link>
-          <h1 className="font-[family-name:var(--font-display)] text-[1.5rem] sm:text-[1.85rem] leading-snug mt-3">{guide.title}</h1>
+          <h1 className="font-[family-name:var(--font-display)] text-[1.35rem] sm:text-[1.6rem] font-semibold leading-snug mt-3 tracking-tight">{guide.title}</h1>
         </div>
       </header>
 
-      <main className="flex-1 max-w-3xl mx-auto w-full px-4 py-8">
-        <article className="card p-5 sm:p-8">
-          <div className="[&>h2]:font-[family-name:var(--font-display)] [&>h2]:text-lg [&>h2]:text-slate [&>h2]:mt-6 [&>h2]:mb-3 [&>p]:text-slate-muted [&>p]:mb-3 [&>p]:leading-relaxed [&>p]:text-[0.9rem] [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-4 [&>ul]:space-y-1 [&>ul>li]:text-slate-muted [&>ul>li]:text-[0.85rem]">
+      <main className="flex-1 max-w-2xl mx-auto w-full px-5 py-8">
+        <article>
+          <div className="[&>h2]:font-[family-name:var(--font-display)] [&>h2]:text-[1.05rem] [&>h2]:font-semibold [&>h2]:text-ink [&>h2]:mt-8 [&>h2]:mb-3 [&>p]:text-ink-secondary [&>p]:mb-3 [&>p]:leading-relaxed [&>p]:text-[0.85rem] [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-4 [&>ul]:space-y-1.5 [&>ul>li]:text-ink-secondary [&>ul>li]:text-[0.85rem] [&>ul>li]:leading-relaxed">
             {guide.content}
           </div>
         </article>
 
-        <div className="mt-6 card p-5 text-center border-teal/20 bg-teal-bg/30">
-          <p className="text-slate font-medium mb-3">Calculate your tax now</p>
+        <div className="mt-10 pt-6 border-t border-rule text-center">
+          <p className="text-ink font-medium text-[0.9rem] mb-3">Calculate your tax now</p>
           <Link
             to="/"
-            className="inline-flex items-center gap-2 bg-slate-deep text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate"
+            className="inline-flex items-center gap-2 bg-ink text-white px-5 py-2.5 rounded text-[0.8rem] font-medium hover:bg-ink-secondary"
           >
             Open CGT Calculator
           </Link>
         </div>
 
-        <div className="mt-6 card p-5">
-          <h3 className="font-[family-name:var(--font-display)] text-lg text-slate mb-3">More guides</h3>
-          <div className="space-y-2">
+        <div className="mt-8 pt-6 border-t border-rule-light">
+          <h3 className="label-caps mb-4">More guides</h3>
+          <div className="space-y-1.5">
             {Object.entries(guides)
               .filter(([key]) => key !== slug)
               .map(([key, g]) => (
                 <Link
                   key={key}
                   to={`/guide/${key}`}
-                  className="block text-sm text-teal hover:text-teal-light font-medium"
+                  className="block text-[0.8rem] text-ink-secondary hover:text-ink font-medium py-0.5"
                 >
                   {g.title}
                 </Link>

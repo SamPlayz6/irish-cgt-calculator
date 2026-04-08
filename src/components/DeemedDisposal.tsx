@@ -34,39 +34,38 @@ export default function DeemedDisposal() {
   const unrealisedGain = asset ? currentValue - asset.purchasePrice : 0;
 
   return (
-    <div className="space-y-6">
-      <section className="card p-5 sm:p-6">
-        <h2 className="font-[family-name:var(--font-display)] text-lg text-slate mb-1">Deemed Disposal</h2>
-        <p className="text-sm text-slate-muted mb-4">
+    <div>
+      <section>
+        <p className="text-[0.8rem] text-ink-muted mb-5 leading-relaxed">
           ETFs and funds are taxed every 8 years, even if you hold. Enter your details to see the timeline.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
           <div>
-            <label className="block text-[0.8rem] font-medium text-slate-muted mb-1">ETF Name (optional)</label>
+            <label className="label-caps block mb-1.5">ETF Name (optional)</label>
             <input
               type="text"
               value={name}
               onChange={e => setName(e.target.value)}
               placeholder="e.g. VWCE, IWDA"
-              className="w-full border border-cream-dark rounded-lg px-3 py-2.5 text-sm text-slate placeholder:text-slate-muted/40 hover:border-slate-muted/30"
+              className="w-full border border-rule rounded px-3 py-2 text-[0.85rem] text-ink placeholder:text-ink-faint hover:border-ink-faint"
             />
           </div>
 
           <div>
-            <label className="block text-[0.8rem] font-medium text-slate-muted mb-1">Purchase Date</label>
+            <label className="label-caps block mb-1.5">Purchase Date</label>
             <input
               type="date"
               value={purchaseDate}
               onChange={e => setPurchaseDate(e.target.value)}
-              className="w-full border border-cream-dark rounded-lg px-3 py-2.5 text-sm text-slate hover:border-slate-muted/30"
+              className="w-full border border-rule rounded px-3 py-2 text-[0.85rem] text-ink hover:border-ink-faint"
             />
           </div>
 
           <div>
-            <label className="block text-[0.8rem] font-medium text-slate-muted mb-1">Total Purchase Cost</label>
+            <label className="label-caps block mb-1.5">Total Purchase Cost</label>
             <div className="relative">
-              <span className="absolute left-3 top-2.5 text-slate-muted text-sm">{'\u20AC'}</span>
+              <span className="absolute left-3 top-2 text-ink-muted text-[0.85rem]">{'\u20AC'}</span>
               <input
                 type="number"
                 value={purchasePrice}
@@ -74,13 +73,13 @@ export default function DeemedDisposal() {
                 placeholder="10,000"
                 min="0"
                 step="0.01"
-                className="w-full border border-cream-dark rounded-lg pl-7 pr-3 py-2.5 text-sm text-slate placeholder:text-slate-muted/40 hover:border-slate-muted/30"
+                className="w-full border border-rule rounded pl-7 pr-3 py-2 text-[0.85rem] text-ink placeholder:text-ink-faint hover:border-ink-faint"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[0.8rem] font-medium text-slate-muted mb-1">Number of Units</label>
+            <label className="label-caps block mb-1.5">Number of Units</label>
             <input
               type="number"
               value={units}
@@ -88,14 +87,14 @@ export default function DeemedDisposal() {
               placeholder="100"
               min="0"
               step="0.001"
-              className="w-full border border-cream-dark rounded-lg px-3 py-2.5 text-sm text-slate placeholder:text-slate-muted/40 hover:border-slate-muted/30"
+              className="w-full border border-rule rounded px-3 py-2 text-[0.85rem] text-ink placeholder:text-ink-faint hover:border-ink-faint"
             />
           </div>
 
           <div className="sm:col-span-2">
-            <label className="block text-[0.8rem] font-medium text-slate-muted mb-1">Current Price Per Unit</label>
+            <label className="label-caps block mb-1.5">Current Price Per Unit</label>
             <div className="relative">
-              <span className="absolute left-3 top-2.5 text-slate-muted text-sm">{'\u20AC'}</span>
+              <span className="absolute left-3 top-2 text-ink-muted text-[0.85rem]">{'\u20AC'}</span>
               <input
                 type="number"
                 value={currentPrice}
@@ -103,36 +102,35 @@ export default function DeemedDisposal() {
                 placeholder="120.50"
                 min="0"
                 step="0.01"
-                className="w-full border border-cream-dark rounded-lg pl-7 pr-3 py-2.5 text-sm text-slate placeholder:text-slate-muted/40 hover:border-slate-muted/30"
+                className="w-full border border-rule rounded pl-7 pr-3 py-2 text-[0.85rem] text-ink placeholder:text-ink-faint hover:border-ink-faint"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Summary */}
+      {/* Summary — horizontal stat row, no card wrappers */}
       {asset && (
-        <section className="card p-5 sm:p-6">
-          <h2 className="font-[family-name:var(--font-display)] text-lg text-slate mb-4">{asset.name}</h2>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <section className="mt-10 pt-6 border-t border-ink">
+          <div className="label-caps mb-1">{asset.name}</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-4">
             <div>
-              <div className="text-[0.7rem] text-slate-muted uppercase tracking-wide">Cost</div>
-              <div className="text-lg font-bold text-slate mt-1 font-[family-name:var(--font-mono)]">{formatEuro(asset.purchasePrice)}</div>
+              <div className="label-caps mb-1">Cost</div>
+              <div className="text-[1.1rem] font-semibold text-ink font-[family-name:var(--font-mono)] tabular-nums">{formatEuro(asset.purchasePrice)}</div>
             </div>
             <div>
-              <div className="text-[0.7rem] text-slate-muted uppercase tracking-wide">Value</div>
-              <div className="text-lg font-bold text-slate mt-1 font-[family-name:var(--font-mono)]">{formatEuro(currentValue)}</div>
+              <div className="label-caps mb-1">Value</div>
+              <div className="text-[1.1rem] font-semibold text-ink font-[family-name:var(--font-mono)] tabular-nums">{formatEuro(currentValue)}</div>
             </div>
             <div>
-              <div className="text-[0.7rem] text-slate-muted uppercase tracking-wide">Gain</div>
-              <div className={`text-lg font-bold mt-1 font-[family-name:var(--font-mono)] ${unrealisedGain >= 0 ? 'text-teal' : 'text-red'}`}>
+              <div className="label-caps mb-1">Gain</div>
+              <div className={`text-[1.1rem] font-semibold font-[family-name:var(--font-mono)] tabular-nums ${unrealisedGain >= 0 ? 'text-gain-green' : 'text-tax-red'}`}>
                 {formatEuro(unrealisedGain)}
               </div>
             </div>
             <div>
-              <div className="text-[0.7rem] text-slate-muted uppercase tracking-wide">Return</div>
-              <div className={`text-lg font-bold mt-1 font-[family-name:var(--font-mono)] ${unrealisedGain >= 0 ? 'text-teal' : 'text-red'}`}>
+              <div className="label-caps mb-1">Return</div>
+              <div className={`text-[1.1rem] font-semibold font-[family-name:var(--font-mono)] tabular-nums ${unrealisedGain >= 0 ? 'text-gain-green' : 'text-tax-red'}`}>
                 {asset.purchasePrice > 0 ? ((unrealisedGain / asset.purchasePrice) * 100).toFixed(1) : 0}%
               </div>
             </div>
@@ -140,59 +138,55 @@ export default function DeemedDisposal() {
         </section>
       )}
 
-      {/* Timeline */}
+      {/* Timeline — clean rows, no card wrapper */}
       {events.length > 0 && (
-        <section className="card">
-          <div className="px-5 sm:px-6 py-4 border-b border-cream-dark">
-            <h2 className="font-[family-name:var(--font-display)] text-lg text-slate">Tax Timeline</h2>
-            <p className="text-[0.75rem] text-slate-muted mt-0.5">Every 8 years from purchase</p>
+        <section className="mt-10">
+          <div className="flex items-baseline justify-between border-b border-ink pb-2 mb-0">
+            <div>
+              <div className="label-caps">Tax Timeline</div>
+              <div className="text-[0.7rem] text-ink-faint mt-0.5">Every 8 years from purchase</div>
+            </div>
           </div>
 
-          <div className="divide-y divide-cream-dark">
+          <div>
             {events.map((event, i) => (
-              <div key={i} className={`px-5 sm:px-6 py-4 ${event.isTriggered ? 'bg-red-bg' : ''}`}>
-                <div className="flex items-center justify-between">
+              <div key={i} className={`flex items-center justify-between py-3 border-b border-rule-light ${event.isTriggered ? 'bg-tax-red-faint -mx-3 px-3' : ''}`}>
+                <div className="flex items-center gap-3">
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                    event.isTriggered ? 'bg-tax-red' : 'bg-rule'
+                  }`} />
                   <div>
-                    <div className="flex items-center gap-2">
-                      <span className={`w-2 h-2 rounded-full ${
-                        event.isTriggered ? 'bg-red' : 'bg-cream-dark'
-                      }`} />
-                      <span className="font-medium text-sm text-slate">
-                        Year {event.yearsHeld}
+                    <span className="text-[0.8rem] font-medium text-ink">
+                      Year {event.yearsHeld}
+                    </span>
+                    {event.isTriggered && (
+                      <span className="ml-2 text-[0.65rem] text-tax-red font-semibold uppercase tracking-wide">
+                        Triggered
                       </span>
-                      {event.isTriggered && (
-                        <span className="text-[0.65rem] bg-red/10 text-red px-1.5 py-0.5 rounded font-medium">
-                          Triggered
-                        </span>
-                      )}
-                    </div>
-                    <div className="text-xs text-slate-muted ml-4 mt-0.5">
+                    )}
+                    <div className="text-[0.7rem] text-ink-muted mt-0.5">
                       {formatDate(event.date)}
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="text-sm font-semibold text-slate font-[family-name:var(--font-mono)]">{formatEuro(event.estimatedTax)}</div>
-                    <div className="text-xs text-slate-muted">on {formatEuro(event.estimatedGain)} gain</div>
-                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[0.8rem] font-medium text-ink font-[family-name:var(--font-mono)] tabular-nums">{formatEuro(event.estimatedTax)}</div>
+                  <div className="text-[0.7rem] text-ink-muted">on {formatEuro(event.estimatedGain)} gain</div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="px-5 sm:px-6 py-4 bg-amber-bg border-t border-cream-dark">
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-amber">Total estimated tax</span>
-              <span className="text-lg font-bold text-amber tabular-nums font-[family-name:var(--font-mono)]">
-                {formatEuro(events.reduce((sum, e) => sum + e.estimatedTax, 0))}
-              </span>
-            </div>
-            <div className="text-[0.7rem] text-amber/70 mt-1">
-              Across {events.length} event{events.length !== 1 ? 's' : ''} over {events[events.length - 1]?.yearsHeld ?? 0} years
-            </div>
+          {/* Total */}
+          <div className="flex items-baseline justify-between py-3 border-b-2 border-ink">
+            <span className="text-[0.8rem] font-semibold text-ink">Total estimated tax</span>
+            <span className="text-[1.1rem] font-bold text-tax-red tabular-nums font-[family-name:var(--font-mono)]">
+              {formatEuro(events.reduce((sum, e) => sum + e.estimatedTax, 0))}
+            </span>
           </div>
-
-          <div className="px-5 sm:px-6 py-3 bg-cream-warm border-t border-cream-dark text-[0.7rem] text-slate-muted">
-            Projections assume current growth rate continues. Actual tax depends on value at each event.
+          <div className="text-[0.7rem] text-ink-faint mt-2">
+            Across {events.length} event{events.length !== 1 ? 's' : ''} over {events[events.length - 1]?.yearsHeld ?? 0} years.
+            Projections assume current growth rate continues.
           </div>
         </section>
       )}
